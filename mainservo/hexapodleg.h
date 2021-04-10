@@ -2,13 +2,11 @@
 #define HEXAPODLEG_H
 
 #include "servomanager.h"
-
-constexpr char kComponentLegCoxa[] = "coxa";
-constexpr char kComponentLegFemur[] = "femur";
-constexpr char kComponentLegTibia[] = "tibia";
+#include "constants.h"
 
 class Leg {
  public:
+  explicit Leg() = default;
   /**
    * @brief Construct a new Leg object
    *
