@@ -1,25 +1,30 @@
+#include "constants.h"
 #include "hexapodleg.h"
+#include "hexapodmanager.h"
 #include "servotestfunction.h"
 
-
-struct Leg {
-  Leg(int pin_coxa, int pin_femur, int pin_tibia) {
-    coxa(pin_coxa);
-    femur(pin_femur);
-    tibia(pin_tibia);
-  }
-
-  ServoManager coxa;
-  ServoManager femur;
-  ServoManager tibia;
+// Initialize components
+auto *hxm = HexapodManger::getInstance();
+static const char *legs[] = {
+    kLeftFrontLeg,  kLeftMidLeg,  kLeftBackLeg,
+    kRightFrontLeg, kRightMidLeg, kRightBackLeg,
 };
 
-static Leg legs[6];
-
 void setup() {
-  for (int i = 0; i < 6; i=i + 3) {
-    legs[i] = Leg(i + 1, i + 2, i + 3);
+  Serial.begin(115200);
+  Serial.print("initialize legs connected to pin");
+  auto *hxm = HexapodManger::getInstance();
+  for (int i = 0; i < kNumberLegs; i++) {
+    hxm->connectLeg(i, i + 1, i + 2, i + 3);
   }
 }
 
-void loop() { testservo(); }
+void loop() {
+  for (int i = 0; i < kNumberLegs; i++) {
+    auto name_leg = legs[i];
+    auto tleg = HexapodManger::getInstance()->getLeg(name_leg);
+    Serial.print("test leg: ");
+    Serial.println(name_leg);
+    testservo(tleg);
+  }
+}
