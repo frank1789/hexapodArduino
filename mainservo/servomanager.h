@@ -1,7 +1,7 @@
+#include <Servo.h>
+
 #ifndef SERVO_MANAGER_H
 #define SERVO_MANAGER_H
-
-#include <Servo.h> 
 
 class ServoManager {
  public:
@@ -24,7 +24,7 @@ class ServoManager {
    * @brief Reset the servo at default position
    *
    */
-  void resetServo() { servo_.write(90); }
+  void resetServo();
 
  private:
   Servo servo_;

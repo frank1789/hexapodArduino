@@ -1,6 +1,4 @@
-#include "servomananger.h"
-
-ServoManager::ServoManager() {}
+#include "servomanager.h"
 
 ServoManager::ServoManager(int pin) {
   servo_.attach(pin);
@@ -20,3 +18,4 @@ void ServoManager::setServoAngle(int angle) {
 }
 
 void ServoManager::resetServo() { servo_.write(90); }
+  

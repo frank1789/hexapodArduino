@@ -17,3 +17,4 @@ Leg::~Leg() {
     delete tibia_;
   }
 }
+

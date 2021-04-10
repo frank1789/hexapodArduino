@@ -4,6 +4,7 @@
 #include "servomanager.h"
 
 class Leg {
+  public:
   /**
    * @brief Construct a new Leg object
    *
@@ -20,9 +21,9 @@ class Leg {
   ~Leg();
 
  private:
-  ServoManager *coxa_ = NULL;
-  ServoManager *femur_ = NULL;
-  ServoManager *tibia_ = NULL;
+  ServoManager *coxa_ = nullptr;
+  ServoManager *femur_ = nullptr;
+  ServoManager *tibia_ = nullptr;
 };
 
 #endif  // HEXAPODLEG_H
