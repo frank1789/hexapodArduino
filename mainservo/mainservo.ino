@@ -17,7 +17,7 @@ struct Leg {
 static Leg legs[6];
 
 void setup() {
-  for (int i = 0; i < 6; i + 3) {
+  for (int i = 0; i < 6; i=i + 3) {
     legs[i] = Leg(i + 1, i + 2, i + 3);
   }
 }
