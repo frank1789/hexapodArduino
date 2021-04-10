@@ -3,8 +3,12 @@
 
 #include "servomanager.h"
 
+constexpr char kComponentLegCoxa = "coxa";
+constexpr char kComponentLegFemur = "femur";
+constexpr char kComponentLegTibia = "tibia";
+
 class Leg {
-  public:
+ public:
   /**
    * @brief Construct a new Leg object
    *
@@ -19,6 +23,19 @@ class Leg {
    *
    */
   ~Leg();
+
+  ServoManager *operator[](const char *component) {
+    if (component == kComponentLegCoxa) {
+      return tibia_;
+    }
+    if (component == kComponentLegFemur) {
+      return femur_;
+    }
+    if (component == kComponentLegTibia) {
+      return tibia_;
+    }
+    return nullptr;
+  }
 
  private:
   ServoManager *coxa_ = nullptr;
