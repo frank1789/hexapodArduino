@@ -3,9 +3,9 @@
 
 #include "servomanager.h"
 
-constexpr char kComponentLegCoxa = "coxa";
-constexpr char kComponentLegFemur = "femur";
-constexpr char kComponentLegTibia = "tibia";
+constexpr char kComponentLegCoxa[] = "coxa";
+constexpr char kComponentLegFemur[] = "femur";
+constexpr char kComponentLegTibia[] = "tibia";
 
 class Leg {
  public:
