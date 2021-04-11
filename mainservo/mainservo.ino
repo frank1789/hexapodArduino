@@ -2,7 +2,6 @@
 #include "hexapodleg.h"
 #include "hexapodmanager.h"
 #include "servotestfunction.h"
-#include "servorosnode.h"
 
 // Initialize components
 auto *hxm = HexapodManger::getInstance();
@@ -18,7 +17,7 @@ void setup() {
   for (int i = 0; i < kPins; i=i+3) {
     int index = i / 3;
     Serial.print("setup leg: ");
-    Serial.println(legs[i]);
+    Serial.println(legs[index]);
     Serial.println("assign pins: ");
     Serial.println("coxa: ");
     Serial.println(i+1);
