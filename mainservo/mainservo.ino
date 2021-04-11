@@ -14,17 +14,19 @@ void setup() {
   Serial.begin(115200);
   Serial.print("initialize legs connected to pin\n");
   auto *hxm = HexapodManger::getInstance();
-  for (int i = 0; i < kPins; i=i+3) {
+  for (int i = 0; i < kPins; i = i + 3) {
     int index = i / 3;
-    Serial.print("setup leg: ");
-    Serial.println(legs[index]);
-    Serial.println("assign pins: ");
-    Serial.println("coxa: ");
-    Serial.println(i+1);
-    Serial.println("femur: ");
-    Serial.println(i+2);
-    Serial.println("tibia: ");
-    Serial.println(i+3);
+    auto msg = String();
+    msg += "setup leg: ";
+    msg += legs[index] + String("\t");
+    msg += "assign pins: ";
+    msg += "coxa: ";
+    msg += String(i + 1) + "\t";
+    msg += "femur: ";
+    msg += String(i + 2) + "\t";
+    msg += "tibia: ";
+    msg += String(i + 3) + "\n";
+    Serial.println(msg);
     hxm->connectLeg(index, i + 1, i + 2, i + 3);
   }
 }
