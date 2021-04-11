@@ -17,9 +17,10 @@ class HexapodManger {
   void connectLeg(int index, int pin_coxa, int pin_femur, int pin_tibia);
 
  private:
-  explicit HexapodManger() = default;
+  explicit HexapodManger();
   static HexapodManger* pinstance_;
-  Leg* legs_[kNumberLegs]{nullptr};
+  typedef Leg* legptr_t;
+  legptr_t *legs_{nullptr};
 };
 
 #endif  // HEXAPOD_MANAGER_H

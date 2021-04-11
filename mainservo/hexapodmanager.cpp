@@ -2,6 +2,20 @@
 
 #include <Arduino.h>
 
+#define DELETE( ptr ) \
+if (ptr != NULL)      \
+{                     \
+    delete ptr;       \
+    ptr = NULL;       \
+}
+
+#define DELETE_TABLE( ptr ) \
+if (ptr != NULL)            \
+{                           \
+    delete[] ptr;           \
+    ptr = NULL;             \
+}
+
 HexapodManger* HexapodManger::pinstance_{nullptr};
 
 HexapodManger* HexapodManger::getInstance() {
@@ -11,10 +25,16 @@ HexapodManger* HexapodManger::getInstance() {
   return pinstance_;
 }
 
+HexapodManger::HexapodManger() {
+  legs_ = new legptr_t[kNumberLegs];
+}
+
 HexapodManger::~HexapodManger() {
-  if (pinstance_ != nullptr) {
-    delete pinstance_;
+  DELETE(pinstance_)
+  for(int i = 0; i < kNumberLegs; i++){
+    DELETE(legs_[i])
   }
+  DELETE_TABLE(legs_)
 }
 
 void HexapodManger::connectLeg(int index, int pin_coxa, int pin_femur,

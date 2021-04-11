@@ -1,8 +1,8 @@
 #ifndef HEXAPODLEG_H
 #define HEXAPODLEG_H
 
-#include "servomanager.h"
 #include "constants.h"
+#include "servomanager.h"
 
 class Leg {
  public:
