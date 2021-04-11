@@ -18,7 +18,7 @@ void setup() {
     int pin_coxa = i + 1;
     int pin_femur = i + 2;
     int pin_tibia = i + 3;
-    auto msg = String(i + " ");
+    auto msg = String(i) + String(" ");
     msg += "setup leg: ";
     msg += String("\"") + legs[index] + String("\"") + String("\t");
     msg += "assign pins: ";

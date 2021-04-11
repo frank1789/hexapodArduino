@@ -9,11 +9,11 @@ constexpr int kPins = 18;
 constexpr char kComponentLegCoxa[] = "coxa";
 constexpr char kComponentLegFemur[] = "femur";
 constexpr char kComponentLegTibia[] = "tibia";
-constexpr char kLeftFrontLeg[] = "leftfrontleg";
-constexpr char kLeftMidLeg[] = "leftmidleg";
-constexpr char kLeftBackLeg[] = "leftbackleg";
-constexpr char kRightFrontLeg[] = "rightfrontleg";
-constexpr char kRightMidLeg[] = "rightmidleg";
-constexpr char kRightBackLeg[] = "rightbackleg";
+constexpr char kLeftFrontLeg[] = "L_front_leg";
+constexpr char kLeftMidLeg[] = "L_mid_leg";
+constexpr char kLeftBackLeg[] = "L_back_leg";
+constexpr char kRightFrontLeg[] = "R_front_leg";
+constexpr char kRightMidLeg[] = "R_mid_leg";
+constexpr char kRightBackLeg[] = "R_back_leg";
 
 #endif  // HEXAPOD_CONSTANTS_H
