@@ -3,6 +3,7 @@
 
 // numeric constants
 constexpr int kNumberLegs = 6;
+constexpr int kPins = 18;
 
 // components' name constants
 constexpr char kComponentLegCoxa[] = "coxa";

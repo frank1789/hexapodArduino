@@ -17,7 +17,7 @@ void setup() {
   auto *hxm = HexapodManger::getInstance();
   for (int i = 0; i < kPins; i=i+3) {
     int index = i / 3;
-    hxm->connectLeg(i, i + 1, i + 2, i + 3);
+    hxm->connectLeg(index, i + 1, i + 2, i + 3);
   }
 }
 
