@@ -6,10 +6,9 @@
 
 class HexapodManger {
  public:
-  static HexapodManger* getInstance();
-  ~HexapodManger();
-  HexapodManger(HexapodManger&) = delete;
-  void operator=(const HexapodManger&) = delete;
+ explicit HexapodManger();
+ ~HexapodManger();
+
 
   Leg getLeg(const char* leg_position);
 
@@ -17,10 +16,8 @@ class HexapodManger {
   void connectLeg(int index, int pin_coxa, int pin_femur, int pin_tibia);
 
  private:
-  explicit HexapodManger();
-  static HexapodManger* pinstance_;
   typedef Leg* legptr_t;
-  legptr_t *legs_{nullptr};
+  legptr_t legs_[kNumberLegs];
 };
 
 #endif  // HEXAPOD_MANAGER_H

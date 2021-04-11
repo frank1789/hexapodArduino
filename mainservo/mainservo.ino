@@ -4,7 +4,7 @@
 #include "servotestfunction.h"
 
 // Initialize components
-auto *hxm = HexapodManger::getInstance();
+static auto hxm = HexapodManger();
 static const char *legs[] = {
     kLeftFrontLeg,  kLeftMidLeg,  kLeftBackLeg,
     kRightFrontLeg, kRightMidLeg, kRightBackLeg,
@@ -13,9 +13,7 @@ static const char *legs[] = {
 void setup() {
   Serial.begin(115200);
   Serial.print("initialize legs connected to pin\n");
-  auto *hxm = HexapodManger::getInstance();
   for (int i = 0; i < kPins; i += 3) {
-    Serial.println(i);
     int index = i / 3;
     int pin_coxa = i + 1;
     int pin_femur = i + 2;
@@ -29,16 +27,16 @@ void setup() {
     msg += "femur: ";
     msg += String(pin_femur) + "\t";
     msg += "tibia: ";
-    msg += String(pin_tibia) + "\n";
+    msg += String(pin_tibia);
     Serial.println(msg);
-    hxm->connectLeg(index, pin_coxa, pin_femur, pin_tibia);
+    hxm.connectLeg(index, pin_coxa, pin_femur, pin_tibia);
   }
 }
 
 void loop() {
   for (int i = 0; i < kNumberLegs; i++) {
     auto name_leg = legs[i];
-    auto tleg = HexapodManger::getInstance()->getLeg(name_leg);
+    auto tleg = hxm.getLeg(name_leg);
     Serial.print("test leg: ");
     Serial.println(name_leg);
     testservo(tleg);
