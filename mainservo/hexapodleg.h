@@ -4,6 +4,9 @@
 #include "constants.h"
 #include "servomanager.h"
 
+#include <Arduino.h>
+
+
 class Leg {
  public:
   explicit Leg() = default;
@@ -22,7 +25,7 @@ class Leg {
    */
   ~Leg();
 
-  ServoManager operator[](const char *component) const {
+  inline ServoManager operator[](const char *component) const {
     ServoManager c;
     if (component == kComponentLegCoxa) {
       c =  *tibia_;
@@ -33,6 +36,8 @@ class Leg {
     if (component == kComponentLegTibia) {
       c = *tibia_;
     }
+    Serial.println("access by name");
+    Serial.println(component);
     return c;
   }
 
