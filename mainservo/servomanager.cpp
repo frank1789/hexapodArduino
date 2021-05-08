@@ -1,5 +1,7 @@
 #include "servomanager.h"
 
+#include <Arduino.h>
+
 ServoManager::ServoManager(int pin) {
   servo_.attach(pin);
   resetServo();
@@ -15,6 +17,8 @@ void ServoManager::setServoAngle(int angle) {
   } else {
     servo_.write(angle);
   }
+	Serial.println("write on motor");
+  Serial.println(angle);
 }
 
 void ServoManager::resetServo() { servo_.write(90); }
