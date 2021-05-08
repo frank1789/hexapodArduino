@@ -21,5 +21,5 @@ void ServoManager::setServoAngle(int angle) {
   Serial.println(angle);
 }
 
-void ServoManager::resetServo() { servo_.write(90); }
+void ServoManager::resetServo() { servo_.write(120); }
   
