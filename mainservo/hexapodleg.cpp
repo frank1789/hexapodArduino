@@ -1,5 +1,7 @@
 #include "hexapodleg.h"
 
+#include <Arduino.h>
+
 Leg::Leg(int pin_coxa, int pin_femur, int pin_tibia) {
   coxa_ = new ServoManager(pin_coxa);
   femur_ = new ServoManager(pin_femur);
@@ -18,3 +20,18 @@ Leg::~Leg() {
   }
 }
 
+ServoManager Leg::getComponentLeg(const char *component) const {
+  ServoManager c;
+  if (component == kComponentLegCoxa) {
+    c = *tibia_;
+  }
+  if (component == kComponentLegFemur) {
+    c = *femur_;
+  }
+  if (component == kComponentLegTibia) {
+    c = *tibia_;
+  }
+  auto str = String("access by name: ") + component + "\n";
+  Serial.println(str);
+  return c;
+}
