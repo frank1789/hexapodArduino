@@ -5,6 +5,7 @@
 
 class ServoManager {
  public:
+  ServoManager() {};
   /**
    * @brief Construct a new Servo Manager object
    *

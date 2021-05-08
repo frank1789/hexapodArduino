@@ -22,17 +22,18 @@ class Leg {
    */
   ~Leg();
 
-  ServoManager *operator[](const char *component) {
+  ServoManager operator[](const char *component) const {
+    ServoManager c;
     if (component == kComponentLegCoxa) {
-      return tibia_;
+      c =  *tibia_;
     }
     if (component == kComponentLegFemur) {
-      return femur_;
+      c = *femur_;
     }
     if (component == kComponentLegTibia) {
-      return tibia_;
+      c = *tibia_;
     }
-    return nullptr;
+    return c;
   }
 
  private:

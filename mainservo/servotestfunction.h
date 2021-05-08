@@ -3,6 +3,6 @@
 
 #include "hexapodleg.h"
 
-void testservo(Leg& legs);
+void testservo(const Leg& legs);
 
 #endif  // SERVOTESTFUNCTION_H
