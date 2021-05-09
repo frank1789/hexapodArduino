@@ -233,7 +233,7 @@ int I2C_SERVOGETOFFSET(int servo_num)
 ServoManager::ServoManager() { }
 
 ServoManager::ServoManager(int pin) {
-  pin_ = (unsigned char)pin;
+  pin_ = pin;
   resetServo();
 }
 
