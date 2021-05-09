@@ -42,7 +42,7 @@ class ServoManager {
   void resetServo();
 
  private:
-  unsigned char pin_;
+  unsigned char pin_{};
 };
 
 #endif  // SERVO_MANAGER_H
