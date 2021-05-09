@@ -19,7 +19,7 @@ int I2C_SERVOGETOFFSET(int servo_num);
 
 class ServoManager {
  public:
-  ServoManager() {};
+  ServoManager();
   /**
    * @brief Construct a new Servo Manager object
    *
