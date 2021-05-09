@@ -246,10 +246,14 @@ void ServoManager::setServoAngle(int angle) {
     I2C_SERVOSET(pin_, angle);
   } else {
     I2C_SERVOSET(pin_, angle);
+    
+  }
+  while(!I2C_SERVOEND()){
+    delay(1)
   }
 	Serial.println("write on motor");
   Serial.println(angle);
 }
 
-void ServoManager::resetServo() { I2C_SERVOSET(pin_, 90); }
+void ServoManager::resetServo() { setServoAngle(90); }
   
