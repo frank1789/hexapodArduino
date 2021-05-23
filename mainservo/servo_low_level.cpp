@@ -289,5 +289,5 @@ void UserCode(HexapodManger *hxm) {
     // I2C_SERVOSPEED(getSpeed());
   }
   // update all servos
-  ServoSetAll(servos);
+  //ServoSetAll(servos);
 }
