@@ -80,9 +80,10 @@ Leg HexapodManger::getLeg(const char* leg_position) {
 void HexapodManger::getServos(ServoManager p[]) {
   static const char* legs[] = {kComponentLegCoxa, kComponentLegFemur,
                         kComponentLegTibia};
-  for (short i = 0; i < kNumberLegs; i++) {
-    for (short j = 0; j < 3; j++) {
+  for (auto i = 0; i < kNumberLegs; i++) {
+    for (auto j = 0; j < 3; j++) {
       p[i * j] = legs_[i]->getComponentLeg(legs[j]);
+      Serial.println("index: "+String(i*j)+ "pin: "+String(p[i*j].getPin()));
     }
   }
 }
