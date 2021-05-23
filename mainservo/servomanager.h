@@ -1,21 +1,5 @@
-#ifndef SERVO_MANAGER_H
-#define SERVO_MANAGER_H
-
-#include <Wire.h>
-
-
-// I2C functions
-void I2C_SERVOSET(unsigned char servo_num,unsigned int servo_pos);
-void I2C_SERVOREVERSE(unsigned char servo_num,unsigned char servo_dir);
-void I2C_SERVOOFFSET(unsigned char servo_num,int value);
-void I2C_SERVOSPEED(unsigned char value);
-void I2C_SERVONUTRALSET(unsigned char servo_num,unsigned int servo_pos);
-void I2C_SERVOMIN(unsigned char servo_num,unsigned int servo_pos);
-void I2C_SERVOMAX(unsigned char servo_num,unsigned int servo_pos);
-char I2C_SERVOEND(void);
-int I2C_SERVOGET(int servo_num);
-int I2C_SERVOGETOFFSET(int servo_num);
-
+#ifndef __SERVO_MANAGER_H__
+#define __SERVO_MANAGER_H__
 
 class ServoManager {
  public:
@@ -25,14 +9,36 @@ class ServoManager {
    *
    * @param pin Integer corresponding to the board pin
    */
-  explicit ServoManager(int pin);
+  explicit ServoManager(unsigned char pin);
 
   /**
    * @brief Set the Servo Angle object
    *
    * @param angle expressed in deg
    */
-  void setServoAngle(int angle);
+  void setServoAngle(unsigned int angle);
+
+  /**
+   * @brief Get the Pin object
+   *
+   * @return unsigned char
+   */
+  inline unsigned char getPin() const { return pin_; }
+
+  /**
+   * @brief Get the Angle object expressed in degree
+   *
+   * @return unsigned int
+   */
+  inline unsigned int getAngle() const { return angle_; }
+
+  /**
+   * @brief Get the Mapped Angle object expresse in value between 500(min) and
+   * 2500(Max)
+   *
+   * @return unsigned int
+   */
+  inline unsigned int getMappedAngle() const { return mapped_angle_; }
 
  protected:
   /**
@@ -43,6 +49,8 @@ class ServoManager {
 
  private:
   unsigned char pin_{};
+  unsigned int angle_{};
+  unsigned int mapped_angle_{};
 };
 
-#endif  // SERVO_MANAGER_H
+#endif  // __SERVO_MANAGER_H__
