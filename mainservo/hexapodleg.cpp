@@ -11,12 +11,15 @@ Leg::Leg(int pin_coxa, int pin_femur, int pin_tibia) {
 Leg::~Leg() {
   if (coxa_) {
     delete coxa_;
+    coxa_ = nullptr;
   }
   if (femur_) {
     delete femur_;
+    femur_ = nullptr;
   }
   if (tibia_) {
     delete tibia_;
+    tibia_ = nullptr;
   }
 }
 
