@@ -22,4 +22,7 @@ void ServoManager::setServoAngle(unsigned int angle) {
                       MIN_SERVO_POSITION, MAX_SERVO_POSITION);
 }
 
-void ServoManager::resetServo() { setServoAngle(90); }
+void ServoManager::resetServo() { 
+  const auto mid_positon = MAX_SERVO_POSITION / 2;
+  setServoAngle(mid_positon); 
+}
