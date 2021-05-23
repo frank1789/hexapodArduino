@@ -33,4 +33,4 @@ HexapodManger::HexapodManger() {
 
 HexapodManger::~HexapodManger() {}
 
-void HexapodManger::getServos(ServoManager p[]) { p = servos_; }
+ServoManager * HexapodManger::getServos() { return servos_; }

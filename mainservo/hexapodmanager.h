@@ -18,7 +18,7 @@ class HexapodManger {
   ~HexapodManger();
 
 
-  void getServos(ServoManager p[]);
+  ServoManager * getServos();
 
  private:
   ServoManager servos_[kPins];

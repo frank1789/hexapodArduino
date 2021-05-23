@@ -275,8 +275,7 @@ void LEDToggle(void) {
 
 void UserCode(HexapodManger *hxm) {
   // Configuration
-  static ServoManager servos[kPins]{};
-  hxm->getServos(servos);
+  auto *servos = hxm->getServos();
   for (short i = 0; i < kPins; i++) {
     // setup maximum value
     I2C_SERVOMAX(servos[i].getPin(), MAX_SERVO_POSITION);
