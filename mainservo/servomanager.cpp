@@ -20,9 +20,11 @@ void ServoManager::setServoAngle(unsigned int angle) {
   angle_ = angle;
   mapped_angle_ = map(angle, MIN_POSITION_SERVO, MAX_POSITION_SERVO,
                       MIN_SERVO_POSITION, MAX_SERVO_POSITION);
+  Serial.println("servo at pin: " + String(pin_) + ", angle position: " +
+                 String(angle_) + " (" + String(mapped_angle_) + (")"));
 }
 
-void ServoManager::resetServo() { 
+void ServoManager::resetServo() {
   const auto mid_positon = MAX_SERVO_POSITION / 2;
-  setServoAngle(mid_positon); 
+  setServoAngle(mid_positon);
 }

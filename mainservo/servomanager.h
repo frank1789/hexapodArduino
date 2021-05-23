@@ -1,7 +1,7 @@
 #ifndef __SERVO_MANAGER_H__
 #define __SERVO_MANAGER_H__
 
-class ServoManager {
+class alignas(unsigned int) ServoManager {
  public:
   ServoManager();
   /**
@@ -56,9 +56,9 @@ class ServoManager {
 
  private:
   unsigned char pin_{};
+  unsigned char speed_{};
   unsigned int angle_{};
   unsigned int mapped_angle_{};
-  unsigned char speed_{};
 };
 
 #endif  // __SERVO_MANAGER_H__
