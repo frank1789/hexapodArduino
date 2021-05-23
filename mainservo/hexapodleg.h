@@ -1,12 +1,17 @@
-#ifndef HEXAPODLEG_H
-#define HEXAPODLEG_H
+#ifndef __HEXAPOD_LEG_H__
+#define __HEXAPOD_LEG_H__
 
 #include "constants.h"
 #include "servomanager.h"
 
 class Leg {
  public:
+  /**
+   * @brief Construct a new Leg object
+   *
+   */
   explicit Leg() = default;
+
   /**
    * @brief Construct a new Leg object
    *
@@ -30,4 +35,4 @@ class Leg {
   ServoManager *tibia_ = nullptr;
 };
 
-#endif  // HEXAPODLEG_H
+#endif  // __HEXAPOD_LEG_H__
