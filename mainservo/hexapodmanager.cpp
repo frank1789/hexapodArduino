@@ -82,8 +82,8 @@ void HexapodManger::getServos(ServoManager p[]) {
                         kComponentLegTibia};
   for (auto i = 0; i < kNumberLegs; i++) {
     for (auto j = 0; j < 3; j++) {
-      p[i * j] = legs_[i]->getComponentLeg(legs[j]);
-      Serial.println("index: "+String(i*j)+ "pin: "+String(p[i*j].getPin()));
+      p[i + j] = legs_[i]->getComponentLeg(legs[j]);
+      Serial.println("index: "+String(i*j)+ "pin: "+String(p[i+j].getPin()));
     }
   }
 }
