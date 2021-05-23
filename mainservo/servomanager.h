@@ -40,6 +40,13 @@ class ServoManager {
    */
   inline unsigned int getMappedAngle() const { return mapped_angle_; }
 
+  /**
+   * @brief Get the Speed object
+   * 
+   * @return unsigned char 
+   */
+  inline unsigned char getSpeed() const {return speed_;}
+
  protected:
   /**
    * @brief Reset the servo at default position
@@ -51,6 +58,7 @@ class ServoManager {
   unsigned char pin_{};
   unsigned int angle_{};
   unsigned int mapped_angle_{};
+  unsigned char speed_{};
 };
 
 #endif  // __SERVO_MANAGER_H__

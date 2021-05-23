@@ -1,44 +1,41 @@
+#include <Arduino.h>
+#include <Wire.h>
+
 #include "constants.h"
-#include "hexapodleg.h"
 #include "hexapodmanager.h"
+#include "servo_low_level.h"
 #include "servotestfunction.h"
 
 // Initialize components
 static auto hxm = HexapodManger();
-static const char *legs[] = {
-    kLeftFrontLeg,  kLeftMidLeg,  kLeftBackLeg,
-    kRightFrontLeg, kRightMidLeg, kRightBackLeg,
-};
+// static const char *legs[] = {
+//     kLeftFrontLeg,  kLeftMidLeg,  kLeftBackLeg,
+//     kRightFrontLeg, kRightMidLeg, kRightBackLeg,
+// };
+
+unsigned char* p = nullptr;
 
 void setup() {
   Serial.begin(115200);
-  Serial.print("initialize legs connected to pin\n");
-  for (int i = 0; i < kPins; i += 3) {
-    int index = i / 3;
-    int pin_coxa = i + 1;
-    int pin_femur = i + 2;
-    int pin_tibia = i + 3;
-    auto msg = String(i) + String(" ");
-    msg += "setup leg: ";
-    msg += String("\"") + legs[index] + String("\"") + String("\t");
-    msg += "assign pins: ";
-    msg += "coxa: ";
-    msg += String(pin_coxa) + "\t";
-    msg += "femur: ";
-    msg += String(pin_femur) + "\t";
-    msg += "tibia: ";
-    msg += String(pin_tibia);
-    Serial.println(msg);
-    hxm.connectLeg(index, pin_coxa, pin_femur, pin_tibia);
-  }
+  Serial.write('S');
+  Serial.write('r');
+  pinMode(13, OUTPUT);
+  pinMode(2, OUTPUT);
+  pinMode(8, INPUT);
+  digitalWrite(8, 1);
+  delay(500);
+  sei();
+  Wire.begin();
+  TWSR = 3;   // no prescaler
+  TWBR = 18;  // Set I2C speed lower to suite I2C Servo controller
+  pinMode(2, OUTPUT);
+  digitalWrite(2, HIGH);
+  delay(500);
+  Serial.println("\n********* End Setup *********");
 }
 
 void loop() {
-  for (int i = 0; i < kNumberLegs; i++) {
-    auto name_leg = legs[i];
-    auto tleg = hxm.getLeg(name_leg);
-    Serial.print("test leg: ");
-    Serial.println(name_leg);
-    testservo(tleg);
-  }
+  testservo(&hxm);
+  UserCode(&hxm);
+  delay(50);
 }

@@ -1,8 +1,8 @@
 #ifndef SERVOTESTFUNCTION_H
 #define SERVOTESTFUNCTION_H
 
-#include "hexapodleg.h"
+#include "hexapodmanager.h"
 
-void testservo(const Leg& legs);
+void testservo(HexapodManger *hmx);
 
 #endif  // SERVOTESTFUNCTION_H

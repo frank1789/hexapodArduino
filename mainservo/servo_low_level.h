@@ -1,6 +1,12 @@
 #ifndef __I2C_LOWLEVEL_SERVO_H__
 #define __I2C_LOWLEVEL_SERVO_H__
 
+#define MIN_SERVO_POSITION 500
+#define MID_SERVO_POSITION 1500
+#define MAX_SERVO_POSITION 2500
+
+#include "hexapodmanager.h"
+
 void I2C_SERVOSET(unsigned char servo_num, unsigned int servo_pos);
 
 void I2C_SERVOREVERSE(unsigned char servo_num, unsigned char servo_dir);
@@ -25,6 +31,6 @@ void CheckEndMovement(void);
 
 void LEDToggle(void);
 
-void LowLevelControllerServo(unsigned char servo_num, unsigned int servo_position);
+void UserCode(HexapodManger *hxm);
 
 #endif  // __I2C_LOWLEVEL_SERVO_H__

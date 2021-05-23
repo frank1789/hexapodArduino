@@ -34,7 +34,7 @@ ServoManager Leg::getComponentLeg(const char *component) const {
   if (component == kComponentLegTibia) {
     c = *tibia_;
   }
-  auto str = String("access by name: ") + component + "\n";
+  auto str = String("access by name: ") + component;
   Serial.println(str);
   return c;
 }

@@ -2,30 +2,54 @@
 
 #include <Arduino.h>
 
-#define DELETE( ptr ) \
-if (ptr != NULL)      \
-{                     \
-    delete ptr;       \
-    ptr = NULL;       \
-}
+#include "constants.h"
 
-#define DELETE_TABLE( ptr ) \
-if (ptr != NULL)            \
-{                           \
-    delete[] ptr;           \
-    ptr = NULL;             \
-}
+#define DELETE(ptr)  \
+  if (ptr != NULL) { \
+    delete ptr;      \
+    ptr = NULL;      \
+  }
+
+#define DELETE_TABLE(ptr) \
+  if (ptr != NULL) {      \
+    delete[] ptr;         \
+    ptr = NULL;           \
+  }
 
 HexapodManger::HexapodManger() {
+  // assemble pins and legs to correctly initialize the robot
+  Serial.print("initialize legs connected to pin\n");
+  for (int i = 0; i < kPins; i += 3) {
+    int index = i / 3;
+    int pin_coxa = i + 1;
+    int pin_femur = i + 2;
+    int pin_tibia = i + 3;
+    auto msg = String(i) + String(" ");
+    msg += "setup leg, assign pins: coxa: ";
+    msg += String(pin_coxa) + "\t";
+    msg += "femur: ";
+    msg += String(pin_femur) + "\t";
+    msg += "tibia: ";
+    msg += String(pin_tibia);
+    Serial.println(msg);
+    this->connectLeg(index, pin_coxa, pin_femur, pin_tibia);
+  }
+
+  /*
+   * here create ROS node
+   * <-----> ALREADY NOT IMPLEMENTED <----->
+   *
+   */
 }
 
 HexapodManger::~HexapodManger() {
-  for(int i = 0; i < kNumberLegs; i++){
+  for (int i = 0; i < kNumberLegs; i++) {
     DELETE(legs_[i])
   }
 }
 
-void HexapodManger::connectLeg(int index, int pin_coxa, int pin_femur, int pin_tibia) {
+void HexapodManger::connectLeg(int index, int pin_coxa, int pin_femur,
+                               int pin_tibia) {
   legs_[index] = new Leg(pin_coxa, pin_femur, pin_tibia);
 }
 
@@ -51,4 +75,14 @@ Leg HexapodManger::getLeg(const char* leg_position) {
   }
 
   return leg;
+}
+
+void HexapodManger::getServos(ServoManager p[]) {
+  static const char* legs[] = {kComponentLegCoxa, kComponentLegFemur,
+                        kComponentLegTibia};
+  for (short i = 0; i < kNumberLegs; i++) {
+    for (short j = 0; j < 3; j++) {
+      p[i * j] = legs_[i]->getComponentLeg(legs[j]);
+    }
+  }
 }
